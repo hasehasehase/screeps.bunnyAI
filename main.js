@@ -1,10 +1,7 @@
-//
-
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleAttacker = require('role.attacker');
-var roleFarUpgrader = require('role.farupgrader');
 var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 var roleTraveler = require('role.traveler')
@@ -74,8 +71,8 @@ module.exports.loop = function () {
             var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: 'builder', working: false});
             console.log('Spawning new builder: ' + newName);
         }
-        else if(travelers.length > maxTravelers) {
-            var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], undefined, {role: 'traveler', working: false, sourcepoint: false});
+        else  if(travelers.length < maxTravelers) {
+            var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], undefined, {role: 'traveler', working: false, waypoint1: false});
             console.log('Spawning new traveler: ' + newName);
         }
         else if(attackers.length < maxAttackers) {
@@ -103,9 +100,6 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
-        }
-        if(creep.memory.role == 'farupgrader') {
-            roleFarUpgrader.run(creep)
         }
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep);
