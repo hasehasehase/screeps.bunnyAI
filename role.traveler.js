@@ -16,16 +16,24 @@ var roleTraveler = {
           creep.moveTo(waypoint);
             if(creep.pos == '[room E93N34 pos 6,16]' && creep.memory.waypoint1 == false){
                 creep.memory.waypoint1 = true;
+                var rdm = Math.floor(Math.random() * (100) + 1)
+                if(rdm>=50){
+                  creep.memory.source = 1
+                }
+                else {
+                  creep.memory.source = 0
+                }
+
             }
         }
-        else if(creep.memory.waypoint1 == true && creep.carry.energy < creep.carryCapacity && creep.room !='[room E92N34]'){
+        else if(creep.memory.waypoint1 && creep.carry.energy < creep.carryCapacity && creep.room !='[room E92N34]'){
             var sources = creep.room.find(FIND_SOURCES)
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-               creep.moveTo(sources[0]);
+            if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
+               creep.moveTo(sources[creep.memory.source]);
             }
         }
 
-        else if(creep.memory.working == true){
+        else if(creep.memory.working){
             if(creep.room != '[room E92N34]'){
                 creep.moveTo(new RoomPosition(48,35,'E92N34'))
             }
