@@ -6,7 +6,6 @@ var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 var roleTraveler = require('role.traveler')
 
-
 var maxHarvesters = 5;
 var maxUpgraders = 7;
 var maxBuilders = 2;
@@ -49,8 +48,8 @@ module.exports.loop = function () {
         + ' | Defenders: ' + defenders.length
         + ' | Attackers: ' + attackers.length
         + ' | Travelers: ' + travelers.length);
-
 // Spawn Creeps
+
     if(harvesters.length < maxHarvesters ) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'harvester'});
         console.log('Spawning new harvester: ' + newName);
@@ -96,26 +95,31 @@ module.exports.loop = function () {
 // run creep execs
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
+
+        switch (creep.memory.role){
+            case 'harvester':
+                roleHarvester.run(creep);
+                break;
+            case 'upgrader':
+                roleUpgrader.run(creep);
+                break;
+            case 'builder':
+                roleBuilder.run(creep);
+                break;
+            case 'attacker':
+                roleAttacker.run(creep);
+                break;
+            case 'defender':
+                roleDefender.run(creep);
+                break;
+            case 'repairer':
+                roleRepairer.run(creep);
+                break;
+            case 'traveler':
+                roleTraveler.run(creep);
+                break;
+
         }
-        if(creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
-        if(creep.memory.role == 'attacker') {
-            roleAttacker.run(creep)
-        }
-        if(creep.memory.role == 'defender') {
-            roleDefender.run(creep)
-        }
-        if(creep.memory.role == 'repairer') {
-            roleRepairer.run(creep)
-        }
-        if(creep.memory.role == 'traveler') {
-            roleTraveler.run(creep)
-        }
+
     }
 }

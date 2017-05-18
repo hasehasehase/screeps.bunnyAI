@@ -1,7 +1,7 @@
 var roleUpgrader = {
 
     /** @param {Creep} creep **/
-    ru77n: function(creep) {
+    run: function(creep) {
       // Reset creep
       if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
