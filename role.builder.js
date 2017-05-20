@@ -1,4 +1,5 @@
-var roleHarvester = require('role.harvester');
+//var roleHarvester = require('role.harvester');
+var roleRepairer = require('role.repairer')
 var roleBuilder = {
 
     /** @param {Creep} creep **/
@@ -21,7 +22,7 @@ var roleBuilder = {
                 }
             }
             else {
-                roleHarvester.run(creep)
+                roleRepairer.run(creep)
             }
             }
 	    else {

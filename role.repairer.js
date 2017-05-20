@@ -1,4 +1,5 @@
-var roleBuilder = require('role.builder');
+//var roleBuilder = require('role.builder');
+var roleUpgrader = require('role.upgrader')
 var wallHealth = 150000;
 
 module.exports = {
@@ -49,7 +50,7 @@ module.exports = {
             // if we can't fine one
             else {
                 // look for construction sites
-                roleBuilder.run(creep);
+                roleUpgrader.run(creep);
             }
         }
         // if creep is supposed to harvest energy from source

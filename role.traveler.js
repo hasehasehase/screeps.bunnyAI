@@ -53,6 +53,7 @@ var roleTraveler = {
         }
         else {
             creep.say('HELP ME');
+            creep.memory.waypoint1 = false
         }
 
 	}
