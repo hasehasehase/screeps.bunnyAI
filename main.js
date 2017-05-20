@@ -5,14 +5,16 @@ var roleAttacker = require('role.attacker');
 var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 var roleTraveler = require('role.traveler')
+var roleClaimer = require('role.traveler');
 
 var maxHarvesters = 5;
 var maxUpgraders = 7;
-var maxBuilders = 2;
+var maxBuilders = 1;
 var maxAttackers = 0;
 var maxDefenders = 0;
-var maxRepairers = 3;
-var maxTravelers = 13;
+var maxRepairers = 2;
+var maxTravelers = 8;
+var maxClaimers = 0;
 
 module.exports.loop = function () {
 
@@ -41,13 +43,17 @@ module.exports.loop = function () {
     var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender');
     var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     var travelers = _.filter(Game.creeps, (creep) => creep.memory.role == 'traveler');
+    var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
+
     console.log('Harvesters: ' + harvesters.length
         + ' | Upgraders: ' + upgraders.length
         + ' | Builders: '  + builders.length
         + ' | Repairers: ' + repairers.length
         + ' | Defenders: ' + defenders.length
         + ' | Attackers: ' + attackers.length
-        + ' | Travelers: ' + travelers.length);
+        + ' | Travelers: ' + travelers.length
+        + ' | Claimers: '  + claimers.length);
+
 // Spawn Creeps
 
     if(harvesters.length < maxHarvesters ) {
@@ -78,6 +84,10 @@ module.exports.loop = function () {
         else if(attackers.length < maxAttackers) {
             var newName = Game.spawns['Spawn1'].createCreep([MOVE,ATTACK,ATTACK,MOVE], undefined, {role: 'attacker', waypoint: false});
             console.log('Spawning new attacker: ' + newName);
+        }
+        else if(claimers.length < maxClaimers) {
+            var newName = Game.spawns['Spawn1'].createCreep([CLAIM,MOVE,MOVE,MOVE], undefined, {role: 'claimer', targetRoom: 'E93N34'});
+            console.log('Spawning new Claimer: ' + newName);
         }
 
     }
@@ -118,7 +128,9 @@ module.exports.loop = function () {
             case 'traveler':
                 roleTraveler.run(creep);
                 break;
-
+            case 'claimer':
+                roleClaimer.run(creep);
+                break;
         }
 
     }
