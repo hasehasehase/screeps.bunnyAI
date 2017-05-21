@@ -18,7 +18,7 @@ var roleClaimer = {
 
 // Move to Target room
         else{
-                creep.moveTo(new RoomPosition(24,24, creep.memory.targetRoom));
+                creep.moveTo(new RoomPosition(24,24, creep.memory.targetRoom))
             }
     }
 };
