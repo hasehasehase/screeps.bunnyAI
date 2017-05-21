@@ -1,4 +1,5 @@
-var targetRoom = 'E93N31'
+var targetRoom = 'E92N32'
+var waypoint1 = Game.flags.AttackWaypoint.pos
 
 var roleAttacker = {
 
@@ -33,15 +34,16 @@ var roleAttacker = {
         }
 // Move to Target room
         else{
-            // Waypoint for E94N34
-            if(creep.memory.waypoint == false){
-                creep.moveTo(new RoomPosition(23,31, 'E94N34'));
-                if(creep.pos == '[room E94N34 pos 23,31]') {
+            // Waypoint
+            if(!creep.memory.waypoint){
+                creep.moveTo(waypoint1);
+                if(creep.pos == waypoint1) {
                     creep.memory.waypoint = true;
                 }
             }
             else {
-                creep.moveTo(new RoomPosition(24, 24, targetRoom));
+                creep.moveTo(new RoomPosition(24,24, targetRoom));
+                console.log('lel')
                 }
             }
         }

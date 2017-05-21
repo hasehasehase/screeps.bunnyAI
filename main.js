@@ -8,15 +8,6 @@ var roleTraveler = require('role.traveler')
 var roleClaimer = require('role.claimer');
 var spawnController = require('spawncontroller');
 
-var maxHarvesters = 5;
-var maxUpgraders = 7;
-var maxBuilders = 1;
-var maxAttackers = 0;
-var maxDefenders = 0;
-var maxRepairers = 2;
-var maxTravelers = 8;
-var maxClaimers = 0;
-
 module.exports.loop = function () {
 
 // Clear non-existing creep memory
