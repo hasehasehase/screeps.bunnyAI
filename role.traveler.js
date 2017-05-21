@@ -55,6 +55,9 @@ var roleTraveler = {
             creep.say('HELP ME');
             creep.memory.waypoint1 = false
         }
+        if(creep.room.name == 'E93N34'){
+            creep.memory.role = 'builder'
+        }
 
 	}
 };

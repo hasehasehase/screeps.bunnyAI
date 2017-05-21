@@ -13,13 +13,13 @@ var roleUpgrader = {
       //Work
 	    if(creep.memory.upgrading) {
         // Solution for Room E92N34
-        if(creep.pos.x == 36){
-            creep.moveTo(creep.room.controller)
+            if(creep.pos.x == 36){
+                creep.moveTo(creep.room.controller)
+            }
+            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.room.controller);
+            }
         }
-        if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.room.controller);
-        }
-      }
       //harvest
       else {
         var sources = creep.room.find(FIND_SOURCES);

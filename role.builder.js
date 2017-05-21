@@ -8,6 +8,13 @@ var roleBuilder = {
 	    if(creep.memory.working && creep.carry.energy == 0) {
             creep.memory.working = false;
             creep.say('🔄 harvest');
+            var rdm = Math.floor(Math.random() * (100) + 1)
+            if(rdm>=50){
+              creep.memory.source = 1
+            }
+            else {
+              creep.memory.source = 0
+            }
 	    }
 	    if(!creep.memory.working && creep.carry.energy == creep.carryCapacity) {
 	        creep.memory.working = true;
@@ -27,8 +34,8 @@ var roleBuilder = {
             }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[creep.memory.source], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
 	    }
 	}

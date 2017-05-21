@@ -5,7 +5,7 @@ var roleAttacker = require('role.attacker');
 var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 var roleTraveler = require('role.traveler')
-var roleClaimer = require('role.traveler');
+var roleClaimer = require('role.claimer');
 
 var maxHarvesters = 5;
 var maxUpgraders = 7;
