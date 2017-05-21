@@ -26,13 +26,8 @@ var roleHarvester = {
                 }
             }
             else {
-                if(creep.memory.role == 'harvester'){
-                    creep.moveTo(14,19)
-                }
-                else {
                     roleUpgrader.run(creep)
                 }
-            }
         }
 	}
 };
