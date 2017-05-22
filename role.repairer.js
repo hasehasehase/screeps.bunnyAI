@@ -24,26 +24,24 @@ module.exports = {
                 // a property called filter which can be a function
                 // we use the arrow operator to define it
                 filter: (s) =>
-                s.hits < wallHealth && s.structureType == STRUCTURE_WALL
-                || s.hits < s.hitsMax && s.structureType == STRUCTURE_ROAD
-                || s.structureType == STRUCTURE_RAMPART && s.hits < wallHealth
-                || s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity
+                    s.hits < wallHealth && s.structureType == STRUCTURE_WALL ||
+                    s.hits < s.hitsMax && s.structureType == STRUCTURE_ROAD ||
+                    s.structureType == STRUCTURE_RAMPART && s.hits < wallHealth ||
+                    s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity
             });
 
             // if we find one
             if (structure != undefined) {
                 // try to repair it, if it is out of range
-                if (structure.structureType == STRUCTURE_TOWER){
+                if (structure.structureType == STRUCTURE_TOWER) {
                     if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                      // move towards it
-                      creep.moveTo(structure);
+                        // move towards it
+                        creep.moveTo(structure);
                     }
-                }
-
-                else{
+                } else {
                     if (creep.repair(structure) == ERR_NOT_IN_RANGE) {
-                    // move towards it
-                    creep.moveTo(structure);
+                        // move towards it
+                        creep.moveTo(structure);
                     }
                 }
             }

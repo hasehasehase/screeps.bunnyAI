@@ -8,33 +8,33 @@ var roleTraveler = require('role.traveler')
 var roleClaimer = require('role.claimer');
 var spawnController = require('spawncontroller');
 
-module.exports.loop = function () {
+module.exports.loop = function() {
 
-// Clear non-existing creep memory
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
+    // Clear non-existing creep memory
+    for (var name in Memory.creeps) {
+        if (!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
     }
 
-// Activate Towers
+    // Activate Towers
     var tower = Game.getObjectById('591b207a7f20becb2f68d28b');
-    if(tower) {
+    if (tower) {
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
+        if (closestHostile) {
             tower.attack(closestHostile);
         }
     }
-// Spawn creeps
+    // Spawn creeps
     spawnController.run();
 
 
-// run creep execs
-    for(var name in Game.creeps) {
+    // run creep execs
+    for (var name in Game.creeps) {
         var creep = Game.creeps[name];
 
-        switch (creep.memory.role){
+        switch (creep.memory.role) {
             case 'harvester':
                 roleHarvester.run(creep);
                 break;
